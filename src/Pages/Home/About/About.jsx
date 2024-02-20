@@ -4,7 +4,7 @@ import about2 from "../../../assets/about/Rectangle5.png";
 const About = () => {
   return (
     <>
-      <div className="flex flex-col lg:flex-row h-auto my-5 lg:my-32">
+      <div className="flex flex-col lg:flex-row h-auto my-5 lg:my-32 items-center">
         <div className="relative w-full lg:w-1/2">
           <img src={about1} alt="" className="w-full" />
           <img

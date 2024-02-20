@@ -6,9 +6,9 @@ const Service = ({ service }) => {
 
   return (
     <div className="mx-auto">
-      <div className="card  bg-base-100 shadow-xl h-80">
+      <div className="card  bg-base-100 shadow-xl h-96">
         <figure className="">
-          <img src={img} alt="Shoes" className="w-full" />
+          <img src={img} alt="Shoes" className="w-full h-72" />
         </figure>
         <div className="card-body">
           <h2 className="card-title">
@@ -16,8 +16,8 @@ const Service = ({ service }) => {
             <div className="badge badge-secondary">NEW</div>
           </h2>
 
-          <div className="card-actions justify-between">
-            <b className="text-[#FF3811]">Price: {price}</b>
+          <div className="card-actions justify-between items-center">
+            <b className="text-[#FF3811]">Price: ${price}</b>
             <Link className="text-[#FF3811] focus:text-black" to="#">
               <FaArrowRight />
             </Link>
