@@ -20,7 +20,7 @@ const Banner = () => {
                 className="btn  focus:text-white focus:bg-[#FF3811] me-2"
                 to="#"
               >
-                Discover More
+                Discover More Projects
               </Link>
               <Link className="btn focus:text-white focus:bg-[#FF3811]" to="#">
                 Latest Project
