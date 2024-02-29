@@ -7,7 +7,7 @@ import { FaArrowRight } from "react-icons/fa6";
 const Services = () => {
   const [services, setServices] = useState([]);
   useEffect(() => {
-    const url = `services.json`;
+    const url = `http://localhost:5000/services`;
     console.log(url);
     fetch(url)
       .then((res) => res.json())

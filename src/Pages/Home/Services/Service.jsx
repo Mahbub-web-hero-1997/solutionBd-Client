@@ -2,8 +2,10 @@ import PropTypes from "prop-types";
 import { FaArrowRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 const Service = ({ service }) => {
-  const { title, price, img } = service;
-
+  const { _id, title, price, img } = service;
+  const serviceDetailsClick = () => {
+  
+}
   return (
     <div className="mx-auto">
       <div className="card  bg-base-100 shadow-xl h-96">
@@ -18,7 +20,7 @@ const Service = ({ service }) => {
 
           <div className="card-actions justify-between items-center">
             <b className="text-[#FF3811]">Price: ${price}</b>
-            <Link className="text-[#FF3811] focus:text-black" to="#">
+            <Link onClick={()=>serviceDetailsClick(id)} className="text-[#FF3811] focus:text-black" to={`/services/${_id}`}>
               <FaArrowRight />
             </Link>
           </div>

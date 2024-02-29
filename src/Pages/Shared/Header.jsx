@@ -1,17 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 
 const Header = () => {
+ 
   const navItems = (
     <>
       <li className="hover:text-[#FF3811]">
         <Link to="/">Home</Link>
       </li>
       <li className="hover:text-[#FF3811]">
-        <Link to="/">Services</Link>
-      </li>
+        <Link to="/services">Services</Link>
+      </li>   
       <li className="hover:text-[#FF3811]">
-        <Link to="/">About</Link>
+        <Link to="/about">About</Link>
       </li>
       <li className="hover:text-[#FF3811]">
         <Link to="/">Blog</Link>
@@ -71,9 +72,9 @@ const Header = () => {
         <ul className="menu menu-horizontal px-1 text-lg font-semibold hidden lg:flex">
           {navItems}
         </ul>
-        <a className="btn lg:text-lg lg:px-8 bottom-1 border-[#FF3811] text-[#FF3811]">
+        <Link to="/services" className="btn lg:text-lg lg:px-8 bottom-1 border-[#FF3811] text-[#FF3811]">
           Book-Now
-        </a>
+        </Link>
       </div>
     </div>
   );
