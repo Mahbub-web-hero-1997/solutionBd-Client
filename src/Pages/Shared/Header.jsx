@@ -72,8 +72,8 @@ const Header = () => {
         <ul className="menu menu-horizontal px-1 text-lg font-semibold hidden lg:flex">
           {navItems}
         </ul>
-        <Link to="/services" className="btn lg:text-lg lg:px-8 bottom-1 border-[#FF3811] text-[#FF3811]">
-          Book-Now
+        <Link to="/login" className="btn lg:text-lg lg:px-8 bottom-1 border-[#FF3811] text-[#FF3811]">
+         Login
         </Link>
       </div>
     </div>

@@ -6,6 +6,7 @@ import ServiceDetails from "../Pages/ServiceDetails/ServiceDetails";
 import Services from "../Pages/Home/Services/Services";
 import About from "../Pages/Home/About/About";
 import CheckOut from "../Pages/CheckOut/CheckOut";
+import Login from "../Pages/Login/Login";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
       {
         path: "/about",
         element:<About/>
+      },
+      {
+        path: "/login",
+        element:<Login/>
       }
      
     ],
