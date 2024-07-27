@@ -1,40 +1,42 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "../Pages/Root";
 import Home from "../Pages/Home/Home";
-import { element } from "prop-types";
 import ServiceDetails from "../Pages/ServiceDetails/ServiceDetails";
 import Services from "../Pages/Home/Services/Services";
 import About from "../Pages/Home/About/About";
 import CheckOut from "../Pages/CheckOut/CheckOut";
 import Login from "../Pages/Login/Login";
+// import Banner from "../Pages/Banner/Banner";
+
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
     children: [
+      // {
+      //   path: '/banner',
+      //   element: <Banner />,
+      //   loader: () => fetch('http://localhost:5000/carousels/')
+      // },
       {
         path: "/",
         element: <Home />,
       },
       {
         path: "/services",
-        element: <Services/>,
-        loader: ({ params }) => fetch(`http://localhost:5000/services`),
-        
-        
-      },
+        element: <Services/>,       
+        },
       {
         path: "services/:id",
-        element: <ServiceDetails />,
-        loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`),
+        element: <ServiceDetails />,  
         
         
       },
       {
         path: "checkout/:id",
         element: <CheckOut />,
-        loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`),
+        
         
         
       },
@@ -46,7 +48,9 @@ export const router = createBrowserRouter([
         path: "/login",
         element:<Login/>
       }
+      
      
     ],
-  },
+  },  
+
 ]);
