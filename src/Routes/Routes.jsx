@@ -6,6 +6,7 @@ import Services from "../Pages/Home/Services/Services";
 import About from "../Pages/Home/About/About";
 import CheckOut from "../Pages/CheckOut/CheckOut";
 import Login from "../Pages/Login/Login";
+import Register from "../Pages/Register/Register";
 // import Banner from "../Pages/Banner/Banner";
 
 
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
       {
         path: "/login",
         element:<Login/>
+      },
+      {
+        path: "/register",
+        element:<Register/>
       }
       
      

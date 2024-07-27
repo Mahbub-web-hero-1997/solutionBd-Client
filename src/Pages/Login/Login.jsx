@@ -2,6 +2,7 @@
 // import { Link } from 'react-router-dom';
 // import auth from '../../firebase.config';
 // import { AuthContext } from '../../AuthProvider/AuthProvider';
+import GoogleLogin from '../Shared/GoogleLogin';
 import './Login.css'
 
 const Login = () => {
@@ -18,13 +19,19 @@ const Login = () => {
     return (
         <>
            
-            <div className=' Login_Form_Container w-11/12 lg:w-1/2  my-10 mx-auto p-5'>
-                <h1 className='text-2xl font-semibold text-[#FF3811]'>Please Login To Continue</h1>
+            <div className=' Login_Form_Container container lg:w-1/2  my-10 mx-auto p-5'>
+                <h1 className='text-2xl font-semibold text-[#FF3811]'>Please Login! </h1>
                  <form action="" className='flex flex-col items-center justify-center gap-5'>
                     <input className='w-full p-3 outline-none text-lg border-[#FF3811] border-b' type="text" name="email" id="" placeholder='Enter Your Email'  />
                     <input className='w-full p-3 outline-none text-lg border-[#FF3811] border-b' type="password" name="password" id="" placeholder='Enter Your Password' />
-                    <input type="submit" value="Login" className='w-full bg-[#FF3811] p-3' />
-            </form>
+                    <input type="submit" value="Login" className='w-full bg-[#FF3811] p-3 text-white font-semibold text-xl cursor-pointer rounded-sm' />
+                </form>
+                <div className='flex w-full mt-3 '>
+                <hr className='border-1 w-1/2' />
+                    <span className='text-sm'>Or</span>
+                <hr className='border-1 w-1/2' />
+                </div>
+                <GoogleLogin/>
            </div>
         </>
     );
