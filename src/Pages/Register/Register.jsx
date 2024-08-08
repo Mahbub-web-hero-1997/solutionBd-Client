@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import GoogleLogin from '../Shared/GoogleLogin';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const Register = () => {
+    const {createUser}=useContext(AuthContext)
     const handleRegister = (event) => {
         const form = event.target;
         const firstName = form.firstName.value;
@@ -11,7 +13,14 @@ const Register = () => {
         const confirmPassword = form.confirmPassword.value;
         const user={ firstName:firstName, lastName:lastName, email:email, password:password, confirmPassword:confirmPassword}
         console.log(user)
-        event.preventDefault();      
+        event.preventDefault();   
+        
+        createUser(email, password)
+            .then(result => { 
+                const user = result.user;
+                console.log(user)
+            })
+        .then(error=>console.log(error))
         
     }
     return (

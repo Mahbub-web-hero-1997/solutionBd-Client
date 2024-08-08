@@ -13,6 +13,7 @@ const Services = () => {
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);
+  // console.log(services);
   return (
     <>
       <div className=" w-full lg:w-96 mx-auto">

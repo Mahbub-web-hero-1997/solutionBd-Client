@@ -15,30 +15,26 @@ export const router = createBrowserRouter([
     path: "/",
     element: <Root />,
     children: [
-      // {
-      //   path: '/banner',
-      //   element: <Banner />,
-      //   loader: () => fetch('http://localhost:5000/carousels/')
-      // },
+    
       {
         path: "/",
         element: <Home />,
       },
       {
         path: "/services",
-        element: <Services/>,       
+        element: <Services/>, 
+              
         },
       {
         path: "services/:id",
-        element: <ServiceDetails />,  
+        element: <ServiceDetails />,
+        loader:({params})=>fetch(`http://localhost:5000/services/${params.id}`)        
         
-        
-      },
+      },     
       {
         path: "checkout/:id",
         element: <CheckOut />,
-        
-        
+        loader:({params})=>fetch(`http://localhost:5000/services/${params.id}`)      
         
       },
       {

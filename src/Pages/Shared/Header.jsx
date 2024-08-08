@@ -1,7 +1,14 @@
 import { Link, useLoaderData } from "react-router-dom";
 import logo from "../../assets/logo.svg";
+import { useContext } from "react";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Header = () => {
+
+  const { user, signOut } = useContext(AuthContext)
+  const handleSignOut = () => {
+    signOut(user)
+  }
  
   const navItems = (
     <>
@@ -72,9 +79,13 @@ const Header = () => {
         <ul className="menu menu-horizontal px-1 text-lg font-semibold hidden lg:flex">
           {navItems}
         </ul>
-        <Link to="/login" className="btn lg:text-lg lg:px-8 bottom-1 border-[#FF3811] text-[#FF3811]">
+        {
+          user? <Link onClick={handleSignOut} to="/login" className="btn lg:text-lg lg:px-8 bottom-1 border-[#FF3811] text-[#FF3811]">
+         LogOut
+        </Link>: <Link to="/login" className="btn lg:text-lg lg:px-8 bottom-1 border-[#FF3811] text-[#FF3811]">
          Login
         </Link>
+       }
       </div>
     </div>
   );

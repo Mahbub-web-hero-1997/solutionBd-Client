@@ -1,20 +1,22 @@
-// import React, { useContext } from 'react';
-// import { Link } from 'react-router-dom';
-// import auth from '../../firebase.config';
-// import { AuthContext } from '../../AuthProvider/AuthProvider';
+import  { useContext } from 'react';
+import auth from '../../firebase.config';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 import GoogleLogin from '../Shared/GoogleLogin';
 import './Login.css'
 
 const Login = () => {
-    // const { user } = useContext(AuthContext)
+    const { signIn } = useContext(AuthContext)
     
     const handleLogin = (event) => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        const user={email:email, password:password}
-        console.log(user)
-        event.preventDefault();      
+        const user={email:email, password:password}      
+        event.preventDefault(); 
+        signIn(user)
+            .then(result => console.log(result))
+        .then(error=>console.log(error))
+
         
     }
     return (

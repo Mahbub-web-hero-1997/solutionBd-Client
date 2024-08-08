@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Link, useLoaderData } from 'react-router-dom';
 
 const CheckOut = () => {
@@ -12,7 +12,7 @@ const CheckOut = () => {
                     <h1 className='text-3xl font-bold text-[#FF3811]'>{title}</h1>
                     <h1 className='text-[#FF3811] my-4'>Price${price}</h1>
                 </div>     
-                <form className='w-full md:w-1/2 border border-2 mx-auto p-2 rounded-lg' action="">
+                <form className='w-full md:w-1/2 border-2 mx-auto p-2 rounded-lg' action="">
                     <div className='flex justify-between gap-2'>
                         <input className='mx-auto p-2 rounded-lg w-1/2 border-2 ' type="text" placeholder='First name' />                       
                         <input className='mx-auto p-2 rounded-lg w-1/2 border-2' type="text" placeholder='Last name' />                       
