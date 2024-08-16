@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Service = ({ service }) => {
   const { _id, title, price, img_url, discount, } = service;
-  console.log(discount)
+  // console.log(discount)
  
   const serviceDetailsClick = () => {
   

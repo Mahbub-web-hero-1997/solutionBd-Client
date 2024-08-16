@@ -1,13 +1,16 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Link} from "react-router-dom";
 import logo from "../../assets/logo.svg";
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Header = () => {
 
-  const { user, signOut } = useContext(AuthContext)
+  const { user, logOut } = useContext(AuthContext)
   const handleSignOut = () => {
-    signOut(user)
+    logOut()
+      .then(() => { })
+      .catch((error) => { console.log(error)})     
+      
   }
  
   const navItems = (
@@ -30,7 +33,7 @@ const Header = () => {
     </>
   );
   return (
-    <div className="navbar bg-base-100 px-0">
+    <div className="navbar bg-base-100 px-0 sticky top-0 z-50">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost text-[#FF3811] lg:hidden pl-0">
@@ -80,7 +83,7 @@ const Header = () => {
           {navItems}
         </ul>
         {
-          user? <Link onClick={handleSignOut} to="/login" className="btn lg:text-lg lg:px-8 bottom-1 border-[#FF3811] text-[#FF3811]">
+          user?.email? <Link onClick={handleSignOut} to="/login" className="btn lg:text-lg lg:px-8 bottom-1 border-[#FF3811] text-[#FF3811]">
          LogOut
         </Link>: <Link to="/login" className="btn lg:text-lg lg:px-8 bottom-1 border-[#FF3811] text-[#FF3811]">
          Login
