@@ -1,6 +1,5 @@
-.Login_Form_Container{
-   border-radius: 7px;
-background: #ffffff;
-box-shadow:  5px 5px 17px #e3e3e3,
-             -5px -5px 17px #ffffff;
+.Login_Form_Container {
+  border-radius: 7px;
+  background: #ffffff;
+  box-shadow: 5px 5px 17px #e3e3e3, -5px -5px 17px #ffffff;
 }
