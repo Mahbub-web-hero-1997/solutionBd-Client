@@ -13,10 +13,10 @@ const Campaigns = () => {
     <Swiper
       className="w-full  rounded-md px-2 h-[330px] z-0"
       modules={[Navigation, Pagination, Autoplay]}
-      loop={true}
-      pagination={{ clickable: true }}
+      pagination={{ scrolling: true }}
+      navigation={{ clickble: true }}
       spaceBetween={20}
-      autoplay={{ delay: 3000 }}
+      autoplay={true}
       slidesPerView={2}
       speed={2000}
       direction="vertical"
