@@ -17,8 +17,8 @@ const Banner = () => {
       <Swiper
         className="w-full md:w-[850px] h-[230px] md:h-[400px] rounded-lg bg-gray-200 "
         modules={[Navigation, Pagination, Autoplay]}
-        loop={true}
         pagination={{ clickable: true }}
+        loop={true}
         spaceBetween={20}
         autoplay={{ delay: 3000, pauseOnMouseEnter: true }}
         slidesPerView={1}

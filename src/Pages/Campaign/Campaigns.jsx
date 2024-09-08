@@ -9,17 +9,17 @@ const Campaigns = () => {
       .then((res) => res.json())
       .then((data) => setCampaigns(data));
   }, []);
+
   return (
     <Swiper
       className="w-full  rounded-md px-2 h-[330px] z-0"
       modules={[Navigation, Pagination, Autoplay]}
-      pagination={{ scrolling: true }}
-      navigation={{ clickble: true }}
+      pagination={{ clickable: true }}
       spaceBetween={20}
       autoplay={true}
       slidesPerView={2}
-      speed={2000}
       direction="vertical"
+      speed={2000}
     >
       {campaigns.map((campaign) => (
         <SwiperSlide className="bg-white p-2 rounded-md z-0" key={campaign._id}>
