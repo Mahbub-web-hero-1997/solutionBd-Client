@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+// import { useLoaderData } from "react-router-dom";
 import Service from "./Service";
 
 const Services = () => {
@@ -10,9 +11,10 @@ const Services = () => {
       .then((response) => response.json())
       .then((data) => setServices(data));
   }, []);
+
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-3">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-y-6 bg-[#e5e7eb] mb-5 p-3 rounded-md">
         {services.map((service) => (
           <Service key={service._id} service={service} />
         ))}
