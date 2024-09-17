@@ -1,18 +1,20 @@
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+  console.log(user);
 
-  const { user, logOut } = useContext(AuthContext)
   const handleSignOut = () => {
     logOut()
-      .then(() => { })
-      .catch((error) => { console.log(error)})     
-      
-  }
- 
+      .then(() => {})
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const navItems = (
     <>
       <li className="hover:text-[#FF3811]">
@@ -20,7 +22,7 @@ const Header = () => {
       </li>
       <li className="hover:text-[#FF3811]">
         <Link to="/services">Services</Link>
-      </li>   
+      </li>
       <li className="hover:text-[#FF3811]">
         <Link to="/about">About</Link>
       </li>
@@ -36,7 +38,11 @@ const Header = () => {
     <div className="navbar bg-base-100 px-0 sticky top-0 z-50">
       <div className="navbar-start">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost text-[#FF3811] lg:hidden pl-0">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn btn-ghost text-[#FF3811] lg:hidden pl-0"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -82,13 +88,22 @@ const Header = () => {
         <ul className="menu menu-horizontal px-1 text-lg font-semibold hidden lg:flex">
           {navItems}
         </ul>
-        {
-          user?.email? <Link onClick={handleSignOut} to="/login" className="btn lg:text-lg lg:px-8 bottom-1 border-[#FF3811] text-[#FF3811]">
-         LogOut
-        </Link>: <Link to="/login" className="btn lg:text-lg lg:px-8 bottom-1 border-[#FF3811] text-[#FF3811]">
-         Login
-        </Link>
-       }
+        {user?.email ? (
+          <Link
+            onClick={handleSignOut}
+            to="/login"
+            className="btn lg:text-lg lg:px-8 bottom-1 border-[#FF3811] text-[#FF3811]"
+          >
+            LogOut
+          </Link>
+        ) : (
+          <Link
+            to="/login"
+            className="btn lg:text-lg lg:px-8 bottom-1 border-[#FF3811] text-[#FF3811]"
+          >
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );
