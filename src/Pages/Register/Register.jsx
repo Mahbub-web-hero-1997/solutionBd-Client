@@ -3,7 +3,7 @@ import GoogleLogin from "../Shared/GoogleLogin";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Register = () => {
-  const { handleSignUp } = useContext(AuthContext);
+  const { signUp } = useContext(AuthContext);
   const handleRegister = (event) => {
     const form = event.target;
     const firstName = form.firstName.value;
@@ -11,6 +11,7 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     const confirmPassword = form.confirmPassword.value;
+    event.preventDefault();
     const user = {
       firstName: firstName,
       lastName: lastName,
@@ -22,13 +23,11 @@ const Register = () => {
     if (password !== confirmPassword) {
       alert("Passwords do not match.");
       return;
+    } else if (user.email === email) {
+      alert("Email already exists.");
+      return;
     }
-    handleSignUp(email, password)
-      .then(() => {})
-      .catch((error) => {
-        alert(error.message);
-      });
-    event.preventDefault();
+    signUp(email, password);
   };
   return (
     <div className="Register_Form_Container container lg:w-1/2 mx-auto pb-10 my-5">
@@ -45,7 +44,6 @@ const Register = () => {
             className="w-full p-3 pl-0 outline-none text-lg border-[#FF3811] border-b"
             type="text"
             name="firstName"
-            id=""
             placeholder="Enter Your First Name"
             required="required"
           />
@@ -53,7 +51,6 @@ const Register = () => {
             className="w-full p-3 pl-0 outline-none text-lg border-[#FF3811] border-b"
             type="text"
             name="lastName"
-            id=""
             placeholder="Enter Your Last Name"
             required="required"
           />
@@ -62,7 +59,6 @@ const Register = () => {
           className="w-full p-3 pl-0 outline-none text-lg border-[#FF3811] border-b"
           type="email"
           name="email"
-          id=""
           placeholder="Example@gmail.com"
           required="required"
         />
@@ -71,7 +67,6 @@ const Register = () => {
             className="w-full p-3 pl-0 outline-none text-lg border-[#FF3811] border-b"
             type="password"
             name="password"
-            id=""
             placeholder="Enter Your Password"
             required="required"
           />
@@ -79,7 +74,6 @@ const Register = () => {
             className="w-full p-3 pl-0 outline-none text-lg border-[#FF3811] border-b"
             type="password"
             name="confirmPassword"
-            id=""
             placeholder="Confirm Password"
             required="required"
           />

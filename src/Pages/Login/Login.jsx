@@ -11,11 +11,8 @@ const Login = () => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    const user = { email: email, password: password };
     event.preventDefault();
-    signIn(user)
-      .then((result) => console.log(result))
-      .then((error) => console.log(error));
+    signIn(email, password);
   };
   return (
     <>

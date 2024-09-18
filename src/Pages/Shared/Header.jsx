@@ -4,16 +4,8 @@ import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Header = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   console.log(user);
-
-  const handleSignOut = () => {
-    logOut()
-      .then(() => {})
-      .catch((error) => {
-        console.log(error);
-      });
-  };
 
   const navItems = (
     <>
@@ -88,7 +80,7 @@ const Header = () => {
         <ul className="menu menu-horizontal px-1 text-lg font-semibold hidden lg:flex">
           {navItems}
         </ul>
-        {user?.email ? (
+        {user?.user?.email ? (
           <Link
             onClick={handleSignOut}
             to="/login"

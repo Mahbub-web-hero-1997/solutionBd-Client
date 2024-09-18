@@ -7,12 +7,12 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const GoogleLogin = () => {
-  const { handleGoogleSignIn } = useContext(AuthContext);
+  const { googleSignIn } = useContext(AuthContext);
 
   return (
     <div className="w-full p-3 flex items-center gap-8">
       <div className=" w-1/2 flex items-center gap-8 border-r">
-        <Link onClick={handleGoogleSignIn} className="text-sm">
+        <Link onClick={googleSignIn} className="text-sm">
           <img
             className="w-9 border hover:shadow-xl hover:scale-110 hover:transition-all hover:translate-x-1 hover:translate-y-1"
             src={google}
