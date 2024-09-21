@@ -1,11 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
-  console.log(user);
+  const { user, logOut } = useContext(AuthContext);
+  const handleSignOut = () => {
+    logOut();
+  };
 
   const navItems = (
     <>
@@ -80,20 +82,45 @@ const Header = () => {
         <ul className="menu menu-horizontal px-1 text-lg font-semibold hidden lg:flex">
           {navItems}
         </ul>
-        {user?.user?.email ? (
-          <Link
-            onClick={handleSignOut}
-            to="/login"
-            className="btn lg:text-lg lg:px-8 bottom-1 border-[#FF3811] text-[#FF3811]"
-          >
-            LogOut
-          </Link>
+        {user?.email ? (
+          <>
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className="w-10 rounded-full">
+                  <img
+                    alt="Tailwind CSS Navbar component"
+                    src={user?.photoURL}
+                  />
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              >
+                <li>
+                  <a className="justify-between">Profile</a>
+                </li>
+                <li>
+                  <Link to="/bookings">My-Bookings</Link>
+                </li>
+                <li>
+                  <Link onClick={handleSignOut} to="/login">
+                    LogOut
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </>
         ) : (
           <Link
             to="/login"
             className="btn lg:text-lg lg:px-8 bottom-1 border-[#FF3811] text-[#FF3811]"
           >
-            Login
+            LogIn
           </Link>
         )}
       </div>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import google from "../../assets/icons/google.png";
 import github from "../../assets/icons/github.png";
 import linkedIn from "../../assets/icons/LinkedIn.png";
@@ -12,7 +12,7 @@ const GoogleLogin = () => {
   return (
     <div className="w-full p-3 flex items-center gap-8">
       <div className=" w-1/2 flex items-center gap-8 border-r">
-        <Link onClick={googleSignIn} className="text-sm">
+        <Link to="/" onClick={googleSignIn} className="text-sm">
           <img
             className="w-9 border hover:shadow-xl hover:scale-110 hover:transition-all hover:translate-x-1 hover:translate-y-1"
             src={google}
