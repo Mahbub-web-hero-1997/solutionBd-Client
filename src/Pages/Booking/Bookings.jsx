@@ -15,8 +15,8 @@ const Bookings = () => {
         setBookings(data);
       });
   }, [user]);
-  const handleDelete = (id) => {
-    const proceed = Swal.fire({
+  const handleDelete = async (id) => {
+    const result = await Swal.fire({
       title: "Are you sure?",
       text: "You Want to Delete this",
       icon: "warning",
@@ -24,17 +24,15 @@ const Bookings = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success",
-        });
-      }
     });
 
-    if (proceed) {
+    if (result.isConfirmed) {
+      await Swal.fire({
+        title: "Deleted!",
+        text: "Your file has been deleted.",
+        icon: "success",
+      });
+
       fetch(`http://localhost:5000/bookings/${id}`, {
         method: "DELETE",
       })
@@ -47,6 +45,7 @@ const Bookings = () => {
         });
     }
   };
+
   return (
     <div className="overflow-x-auto my-4">
       <h1>Total Booking: {bookings.length}</h1>

@@ -2,6 +2,7 @@ import { useContext } from "react";
 
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Checkout = () => {
   const { user } = useContext(AuthContext);
@@ -16,6 +17,18 @@ const Checkout = () => {
     const phone = form.phone.value;
     const name = form.name.value;
     const address = form.address.value;
+
+    // Optional: Basic validation (e.g., check for empty values)
+    if (!title || !price || !email || !phone || !name || !address) {
+      Swal.fire({
+        position: "top-end",
+        icon: "warning",
+        title: "Please fill in all the fields",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return;
+    }
 
     fetch("http://localhost:5000/bookings", {
       method: "POST",
@@ -33,16 +46,41 @@ const Checkout = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.insertedId < 0) {
-          alert("Booking successful!");
-          form.reset();
+        if (data.insertedId) {
+          // Check if insertedId exists
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your booking has been Confirmed",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          form.reset(); // Reset the form if needed
+        } else {
+          Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: "Failed to save your booking",
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Something went wrong",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       });
 
-    // console.log(
-    //   `title: ${title}, price: ${price}, email: ${email}, password, phone:${phone}, name:${name}, address:${address}`
-    // );
+    // Optional: Log the data (commented out)
+    // console.log(`title: ${title}, price: ${price}, email: ${email}, phone:${phone}, name:${name}, address:${address}`);
   };
+
   return (
     <div className="Register_Form_Container container lg:w-1/2 mx-auto pb-10 my-5">
       <h1 className="text-2xl font-semibold text-[#FF3811]">

@@ -3,16 +3,22 @@ import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import GoogleLogin from "../Shared/GoogleLogin";
 import "./Login.css";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location?.state?.from;
+  console.log(from);
 
   const handleLogin = (event) => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    event.preventDefault();
     signIn(email, password);
+    navigate(from, { replace: true });
+    event.preventDefault();
   };
   return (
     <>
