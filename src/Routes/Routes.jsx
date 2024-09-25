@@ -30,7 +30,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/bookings",
-        element: <Bookings />,
+        element: (
+          <PrivateRoute>
+            <Bookings />
+          </PrivateRoute>
+        ),
         loader: () => fetch("http://localhost:5000/bookings"),
       },
       {
