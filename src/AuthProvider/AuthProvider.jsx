@@ -26,67 +26,34 @@ const AuthProvider = ({ children }) => {
 
   const signUp = (email, password) => {
     setLoader(true);
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed up
-        const user = userCredential.user;
-        console.log(user);
-      })
-      .catch((error) => {
-        console.error("Error:" + error.code, error.message);
-      })
-      .finally(() => {
-        setLoader(false); // Stop loader after signup completes
-      });
+    return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const signIn = (email, password) => {
     setLoader(true);
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Logged in
-        console.log(userCredential.user);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      })
-      .finally(() => {
-        setLoader(false); // Stop loader after login completes
-      });
+    return signInWithEmailAndPassword(auth, email, password);
   };
 
   const googleSignIn = () => {
     setLoader(true);
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        // Logged in with Google
-        console.log(result.user);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      })
-      .finally(() => {
-        setLoader(false);
-        // Stop loader after Google login completes
-      });
+    return signInWithPopup(auth, provider);
   };
 
   const logOut = () => {
     setLoader(true);
-    signOut(auth)
-      .then(() => {
-        console.log("User signed out");
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      })
-      .finally(() => {
-        setLoader(false); // Stop loader after logout completes
-      });
+    return signOut(auth);
   };
 
-  const AuthInfo = { signUp, loader, user, signIn, googleSignIn, logOut };
+  const AuthInfo = {
+    signUp,
+    loader,
+    setLoader,
+    user,
+    signIn,
+    googleSignIn,
+    logOut,
+  };
 
   return (
     <AuthContext.Provider value={AuthInfo}>{children}</AuthContext.Provider>

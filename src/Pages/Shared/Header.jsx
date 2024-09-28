@@ -1,12 +1,21 @@
-import { Link, } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Header = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, setLoader } = useContext(AuthContext);
   const handleSignOut = () => {
-    logOut();
+    logOut()
+      .then(() => {
+        console.log("User signed out");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      })
+      .finally(() => {
+        setLoader(false); // Stop loader after logout completes
+      });
   };
 
   const navItems = (

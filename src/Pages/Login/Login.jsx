@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
-  const { signIn } = useContext(AuthContext);
+  const { signIn, setLoader } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -23,7 +23,17 @@ const Login = () => {
 
     try {
       // Await the sign-in process to ensure it's completed before redirecting
-      await signIn(email, password);
+      await signIn(email, password)
+        .then((userCredential) => {
+          // Logged in
+          console.log(userCredential.user);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        })
+        .finally(() => {
+          setLoader(false); // Stop loader after login completes
+        });
 
       // Navigate to the desired path after successful login
       navigate(from, { replace: true });
