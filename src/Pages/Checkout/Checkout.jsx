@@ -30,20 +30,24 @@ const Checkout = () => {
       return;
     }
 
-    fetch("http://localhost:5000/bookings", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title,
-        price,
-        email,
-        phone,
-        name,
-        address,
-      }),
-    })
+    fetch(
+      "http://localhost:5000/bookings",
+
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title,
+          price,
+          email,
+          phone,
+          name,
+          address,
+        }),
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         if (data.insertedId) {
@@ -112,7 +116,6 @@ const Checkout = () => {
             type="text"
             name="name"
             defaultValue={user?.displayName}
-            readOnly
           />
           <input
             className="w-full p-3 pl-0 outline-none text-lg border-[#FF3811] border-b"

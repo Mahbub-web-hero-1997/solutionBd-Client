@@ -3,6 +3,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider"; // Ensure this pa
 import GoogleLogin from "../Shared/GoogleLogin"; // Ensure this component is defined and imported correctly
 import { useLocation, useNavigate } from "react-router-dom";
 import "./Login.css";
+import axios from "axios";
 
 const Login = () => {
   const { signIn, setLoader } = useContext(AuthContext);
@@ -27,6 +28,18 @@ const Login = () => {
         .then((userCredential) => {
           // Logged in
           console.log(userCredential.user);
+          axios
+            .post(
+              "http://localhost:5000/jwt",
+              { email },
+              { withCredentials: true }
+            )
+            .then((res) => {
+              if (res.data.success) {
+                // Redirect to the original page after successful login
+                navigate(from, { replace: true });
+              }
+            });
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -36,7 +49,6 @@ const Login = () => {
         });
 
       // Navigate to the desired path after successful login
-      navigate(from, { replace: true });
 
       // Optionally reset form fields (if needed)
       form.reset();
