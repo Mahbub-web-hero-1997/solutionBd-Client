@@ -2,19 +2,26 @@ import Booking from "./Booking";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Bookings = () => {
   const [bookings, setBookings] = useState([]);
   const { user } = useContext(AuthContext);
+  console.log(user);
 
   useEffect(() => {
-    const url = `http://localhost:5000/bookings?email=${user?.email}`;
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setBookings(data);
-      });
-  }, [user]);
+    if (user?.email) {
+      const url = `http://localhost:5000/bookings?email=${user?.email}`;
+      axios
+        .get(url, { withCredentials: true })
+        .then((res) => {
+          setBookings(res.data);
+        })
+        .catch((err) => {
+          err.message;
+        });
+    }
+  }, [user.email]);
   const handleDelete = async (id) => {
     const result = await Swal.fire({
       title: "Are you sure?",

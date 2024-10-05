@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const GoogleLogin = () => {
-  const { googleSignIn, setLoader } = useContext(AuthContext);
+  const { googleSignIn, setLoader, user } = useContext(AuthContext);
   const signInWithGoogle = () => {
     // Call the AuthContext's signInWithGoogle method
     googleSignIn()
@@ -57,12 +57,21 @@ const GoogleLogin = () => {
         </Link>
       </div>
       <div>
-        <span>
-          New user?
-          <Link to="/register" className="text-blue-600">
-            Please Register!
-          </Link>
-        </span>
+        {user ? (
+          <span>
+            Already have an account?
+            <Link to="/login" className="text-blue-600">
+              Login!
+            </Link>
+          </span>
+        ) : (
+          <span>
+            New user?
+            <Link to="/register" className="text-blue-600">
+              Register Here!
+            </Link>
+          </span>
+        )}
       </div>
     </div>
   );

@@ -1,13 +1,14 @@
 import { useContext } from "react";
 
 import { AuthContext } from "../../AuthProvider/AuthProvider";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const Checkout = () => {
   const { user } = useContext(AuthContext);
   const checkoutData = useLoaderData();
   const { price, title } = checkoutData;
+  const navigate = useNavigate();
   const handleCheckoutData = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -51,6 +52,7 @@ const Checkout = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.insertedId) {
+          navigate("/bookings");
           // Check if insertedId exists
           Swal.fire({
             position: "top-end",

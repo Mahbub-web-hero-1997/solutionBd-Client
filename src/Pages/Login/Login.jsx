@@ -13,13 +13,13 @@ const Login = () => {
   // Provide a default fallback for the 'from' location
   const from = location.state?.from || "/";
 
-  console.log(from); // Debug: logs the original page the user wanted to access
+  // console.log(from); // Debug: logs the original page the user wanted to access
 
   const handleLogin = async (event) => {
     event.preventDefault(); // Prevent default form submission behavior
 
     const form = event.target;
-    const email = form.email.value;
+    const email = form.email.value.toLowerCase();
     const password = form.password.value;
 
     try {
@@ -27,7 +27,8 @@ const Login = () => {
       await signIn(email, password)
         .then((userCredential) => {
           // Logged in
-          console.log(userCredential.user);
+          // console.log(userCredential.user);
+
           axios
             .post(
               "http://localhost:5000/jwt",
@@ -38,6 +39,7 @@ const Login = () => {
               if (res.data.success) {
                 // Redirect to the original page after successful login
                 navigate(from, { replace: true });
+                setLoader(true);
               }
             });
         })

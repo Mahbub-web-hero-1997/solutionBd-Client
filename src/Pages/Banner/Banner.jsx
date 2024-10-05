@@ -22,7 +22,7 @@ const Banner = () => {
   return (
     <div className="my-5 flex flex-col md:flex-row gap-4">
       <Swiper
-        className="w-full md:w-[850px] h-[230px] md:h-[400px] rounded-lg bg-gray-200"
+        className="w-full md:w-[800px] h-[230px] md:h-[420px] rounded-lg bg-gray-200"
         modules={[Navigation, Pagination, Autoplay]}
         pagination={{ clickable: true }}
         loop={true}
@@ -32,7 +32,7 @@ const Banner = () => {
         speed={2000}
       >
         {carousels.map((carousel) => (
-          <SwiperSlide key={carousel._id} className="w-full md:w-[800px]">
+          <SwiperSlide key={carousel._id} className="w-full md:w-[800px] ">
             <div className="hero h-[200px] md:h-[300px]">
               <div className="hero-content flex-row justify-normal md:gap-x-10">
                 <div className="w-[60%] md:w-[50%]">
@@ -62,7 +62,7 @@ const Banner = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="w-full md:w-[350px] h-[400px] bg-gray-200 rounded-lg p-2">
+      <div className="w-full md:w-[350px] h-[420px] bg-gray-200 rounded-lg p-2">
         <h1 className="text-xl font-semibold mb-2 w-full">
           Upcoming Campaigns
         </h1>
