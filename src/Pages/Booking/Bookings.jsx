@@ -18,10 +18,11 @@ const Bookings = () => {
           setBookings(res.data);
         })
         .catch((err) => {
-          err.message;
+          console.error(err.message); // Log or handle the error
         });
     }
-  }, [user.email]);
+  }, [user?.email]); // Safeguarded dependency
+
   const handleDelete = async (id) => {
     const result = await Swal.fire({
       title: "Are you sure?",
